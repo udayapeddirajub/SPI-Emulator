@@ -1,8 +1,11 @@
 #ifndef SPI_H
 #define SPI_H
 
-#include <vector>
 #include <cstdint>
+#include <stdexcept>
+#include <vector>
+using namespace std;
+
 
 // Abstract base class representing an SPI Slave device.
 // Any concrete SPI slave must implement the transfer method.
