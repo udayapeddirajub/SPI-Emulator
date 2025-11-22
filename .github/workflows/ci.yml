@@ -1,0 +1,26 @@
+name: C++ CI                           # Workflow name: Continuous Integration for C++
+
+on: [push, pull_request]              # Trigger workflow on push(after commit) or pull(merge) requests to repo
+
+jobs:
+  build_and_test:                     # Define a job named build_and_test
+    runs-on: ubuntu-latest            # Use latest Ubuntu virtual environment
+
+    steps:
+    - uses: actions/checkout@v3       # Step 1: Check out the repository content
+    
+    - name: Install dependencies      # Step 2: Install required Linux packages
+      run: sudo apt-get update && sudo apt-get install -y cmake g++ libgtest-dev
+
+    - name: Build Google Test          # Step 3: Build Google Test library on runner
+      run: |
+        cd /usr/src/gtest
+        sudo cmake CMakeLists.txt
+        sudo make
+        sudo cp *.a /usr/lib
+
+    - name: Build project              # Step 4: Build SPI project using cmake and make
+      run: cmake . && make
+
+    - name: Run tests                  # Step 5: Execute unit tests and show output on failure
+      run: ctest --output-on-failure
