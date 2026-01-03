@@ -1,164 +1,85 @@
-\# SPI Emulator Project
+# SPI Emulator
 
+## Introduction
 
+SPI Emulator is a software tool designed to simulate Serial Peripheral Interface (SPI) communication in a controlled environment. This allows developers to test and debug SPI-based systems without requiring physical hardware. The emulator provides a flexible and extensible framework suitable for embedded software development, device driver testing, and protocol analysis.
 
-A C++ project that emulates the SPI (Serial Peripheral Interface) protocol to demonstrate master-slave communication. Includes unit tests and automated CI/CD setup with GitHub Actions.
+## Features
 
+- Emulates SPI master and slave communication protocols
+- Supports configurable clock polarity, phase, and bit order
+- Enables simulation of multiple SPI devices on a virtual bus
+- Offers logging and debugging tools for transaction analysis
+- Allows integration with automated test frameworks
+- Provides APIs for scripting and custom protocol extensions
 
+## Usage
 
-\*\*\*
+To use the SPI Emulator, set up your virtual SPI devices and configure the desired protocol parameters. Run the emulator and connect your test software or drivers to the provided virtual SPI interface. Monitor communications using the built-in logging tools, and optionally script transactions for automated testing.
 
+Typical use cases include:
 
+- Testing embedded software without hardware
+- Debugging SPI protocol implementations
+- Automating SPI transaction sequences for regression tests
+- Simulating multiple devices on a shared bus
 
-\## Folder Structure
+## Requirements
 
+- Python 3.6 or higher (for Python-based implementations)
+- Standard build tools (gcc, make) for C/C++ versions
+- Optional: PySerial or similar library for serial interface emulation
+- Operating System: Linux, Windows, or macOS
 
+## Installation
 
-```
+Follow these steps to install SPI Emulator:
 
-/SPI\_Emulator\_Project
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/udayapeddirajub/SPI-Emulator.git
+   ```
 
-├── /src                # Source files
+2. Navigate to the project directory:
+   ```bash
+   cd SPI-Emulator
+   ```
 
-│   ├── SPI.h           # SPI master-slave interface
+3. Install Python dependencies (if applicable):
+   ```bash
+   pip install -r requirements.txt
+   ```
 
-│   ├── SlaveDevice.h   # SPI slave implementation
+4. Build the project (for C/C++ code):
+   ```bash
+   make
+   ```
 
-│   └── main.cpp        # Demo program entry-point
+5. (Optional) Set up environment variables or add executable to your PATH for easier access.
 
-├── /tests              # Unit tests
+## Configuration
 
-│   └── test\_spi.cpp    # GoogleTest unit tests
+Configure the SPI Emulator to match your target environment:
 
-├── /.github/workflows  # CI/CD pipeline configs
+- **SPI Parameters:** 
+  - Set clock polarity (CPOL) and phase (CPHA)
+  - Choose bit order (MSB/LSB first)
+  - Configure transfer speed and data width
 
-│   └── ci.yml          # GitHub Actions workflow
+- **Device Setup:**
+  - Define virtual devices and their roles (master/slave)
+  - Assign chip select (CS) lines for each device
 
-├── CMakeLists.txt      # Build configuration
+- **Logging and Debugging:**
+  - Enable transaction logs to file or console
+  - Adjust verbosity level for debugging output
 
-└── README.md           # Project documentation
+- **Scripting (Optional):**
+  - Use provided API to script custom SPI transactions
+  - Integrate with automated test suites using Python or shell scripts
 
-```
+Configuration can be done via a JSON/YAML file, command-line options, or through API calls, depending on the implementation. Refer to the example configuration files in the repository for guidance.
 
+---
 
-
-\*\*\*
-
-
-
-\## Getting Started (Visual Studio)
-
-
-
-\### Prerequisites
-
-
-
-\- \*\*Visual Studio 2017 or later\*\*, with C++ development workload installed  
-
-\- \*\*CMake support\*\* is built into Visual Studio  
-
-\- \*\*GoogleTest\*\* can be installed via \[vcpkg](https://github.com/microsoft/vcpkg/) or integrated manually  
-
-
-
-\### Build and Run
-
-
-
-1\. Open Visual Studio and select \*\*File → Open → Folder\*\*  
-
-2\. Open the project root folder containing `CMakeLists.txt`  
-
-3\. Visual Studio will automatically configure and generate build files using CMake  
-
-4\. Use the \*\*Solution Explorer\*\* to build targets:  
-
-&nbsp;  - `spi\_demo` to run the SPI demo program  
-
-&nbsp;  - `spi\_test` to run unit tests (also accessible via Test Explorer)  
-
-
-
-No manual `mkdir build` or `cmake ..` commands are necessary unless you want to build outside Visual Studio.
-
-
-
-\*\*\*
-
-
-
-\## Using Git and CI/CD
-
-
-
-\- When you edit code and push to your GitHub repository, \*\*you do NOT need to build or run tests locally\*\*.  
-
-\- The \*\*GitHub Actions CI/CD pipeline\*\* defined in `.github/workflows/ci.yml` will automatically:  
-
-&nbsp; - Build your code  
-
-&nbsp; - Run all unit tests  
-
-&nbsp; - Report build/test results on GitHub for your pull requests and pushes  
-
-
-
-This helps maintain code quality and verifies your changes without manual build steps.
-
-
-
-\*\*\*
-
-
-
-\## Build and Test Commands (If using command line)
-
-
-
-Alternatively, if building manually on any system with CMake and compiler installed, run from the project root:
-
-
-
-```bash
-
-mkdir build  #creates a new folder in root as build
-
-cd build
-
-cmake ..
-
-make
-
-./spi\_demo             # Run demo program
-
-ctest --output-on-failure  # Run unit tests, show details if failures occur
-
-```
-
-
-
-\*\*\*
-
-
-
-\## File Descriptions
-
-
-
-\- `src/SPI.h`: Defines SPI master and slave classes  
-
-\- `src/SlaveDevice.h`: A sample slave device that echoes data  
-
-\- `src/main.cpp`: Program demonstrating SPI data transfer  
-
-\- `tests/test\_spi.cpp`: Unit tests verifying SPI behavior  
-
-\- `CMakeLists.txt`: Build configuration integrating GoogleTest and executables  
-
-\- `.github/workflows/ci.yml`: Automates build/test on GitHub
-
-
-
-\*\*\*
-
+For further details, example scripts, and advanced setup instructions, refer to the documentation and sample files provided in the repository.
